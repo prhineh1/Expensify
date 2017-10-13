@@ -1,0 +1,12 @@
+import React from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+
+export const ExpenseListItem = ({ id, description, createdAt, amount}) => (
+    <div>
+        <Link to={'/edit/'+ id}><h3>{description}</h3></Link>
+        <p>${amount/100} - {createdAt}</p>
+    </div>
+);
+
+export default ExpenseListItem
