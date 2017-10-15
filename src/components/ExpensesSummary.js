@@ -7,9 +7,9 @@ import numeral from 'numeral';
 export const ExpensesSummary = (props) => (
     <div>
         {props.expenseCount === 1 ? (
-            <p>Viewing {props.expenseCount} expense totalling {numeral(props.expensesTotal / 100).format('$0,0.00')}</p>
+            <h1>Viewing {props.expenseCount} expense totalling {numeral(props.expensesTotal / 100).format('$0,0.00')}</h1>
         ) : (
-            <p>Viewing {props.expenseCount} expenses totalling {numeral(props.expensesTotal / 100).format('$0,0.00')} </p>
+            <h1>Viewing {props.expenseCount} expenses totalling {numeral(props.expensesTotal / 100).format('$0,0.00')} </h1>
         )}
     </div>
 );
