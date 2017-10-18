@@ -1,16 +1,16 @@
 import uuid from 'uuid';
+import database from '../firebase/firebase';
 
 //ADD_EXPENSE
 
-export const addExpense = ({description = '', note = '', amount = 0, createdAt = 0} = {}) => ({
+export const addExpense = (expense = {}) => ({
     type: 'ADD_EXPENSE',
-    expense: {
-        id: uuid(),
-        description,
-        note,
-        amount,
-        createdAt
-    }
+    expense
+});
+
+export const addExpenseComplete = (expense = {}) => ({
+    type: 'ADD_EXPENSE_COMPLETE',
+    expense
 });
 
 //REMOVE_EXPENSE

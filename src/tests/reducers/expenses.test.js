@@ -34,7 +34,7 @@ test('should add an expense', () => {
         id: 'Panurge'
     };
     const action = {
-        type: 'ADD_EXPENSE',
+        type: 'ADD_EXPENSE_COMPLETE',
         expense
     };
     const state = expensesReducer(expenses, action);

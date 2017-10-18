@@ -1,4 +1,4 @@
-import { addExpense, editExpense, removeExpense } from '../../actions/expenses';
+import { editExpense, removeExpense, addExpenseComplete } from '../../actions/expenses';
 
 test('should setup remove expense action object', () => {
     const action = removeExpense({ id: '123abc'});
@@ -24,28 +24,22 @@ test('should setup add expense action with provided values', () => {
         description: 'Rent',
         amount: 109500,
         createdAt: 1000,
-        note: 'test note'
+        note: 'test note',
+        id: 'ldajsf;lasdjf'
     };
-    const action = addExpense(expenseData);
+    const action = addExpenseComplete(expenseData);
     expect(action).toEqual({
-        type: 'ADD_EXPENSE',
+        type: 'ADD_EXPENSE_COMPLETE',
         expense: {
             ...expenseData,
-            id: expect.any(String)
         }
     })
 });
 
 test('should setup add expense action object with default values', () => {
-    const action = addExpense();
+    const action = addExpenseComplete();
     expect(action).toEqual({
-        type: 'ADD_EXPENSE',
-        expense: {
-            description: '',
-            amount: 0,
-            createdAt: 0,
-            note: '',
-            id: expect.any(String)
-        }
+        type: 'ADD_EXPENSE_COMPLETE',
+        expense: {}
     });
 });
