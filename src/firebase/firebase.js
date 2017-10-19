@@ -12,6 +12,7 @@ const config = {
 firebase.initializeApp(config);
 
 const database = firebase.database();
+export const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
 
 export const create = (expense) => database.ref('expenses').push(expense);
 
@@ -33,6 +34,10 @@ export const get = () => {
 export const remove = (id) => database.ref(`expenses/${id}`).remove();
 
 export const edit = (updates, id) => database.ref(`expenses/${id}`).update({ ...updates })
+
+export const login = () => firebase.auth().signInWithPopup(googleAuthProvider)
+
+export const logout = () => firebase.auth().signOut();
 
 // database.ref('expenses').on('child_removed', (snapshot) => {
 //     console.log(snapshot.key, snapshot.val());

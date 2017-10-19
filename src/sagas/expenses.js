@@ -1,28 +1,24 @@
-import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import AppRouter from '../routers/AppRouter';
-import configureStore from '../store/configureStore';
 import { takeEvery } from 'redux-saga';
 import { put, all, call } from 'redux-saga/effects'
 import * as Api from '../firebase/firebase';
-import { jsx } from '../app';
+import { jsx, renderApp } from '../app';
 
 //WATCHERS
 
-function* watchAddExpenseSaga() {
+export function* watchAddExpenseSaga() {
     yield takeEvery('ADD_EXPENSE', addExpenseAsync);
 };
 
-function* watchSetExpensesSaga() {
+export function* watchSetExpensesSaga() {
     yield takeEvery('SET_EXPENSES', setExpensesAsync);
 };
 
-function* watchRemoveExpenseSaga() {
+export function* watchRemoveExpenseSaga() {
     yield takeEvery('REMOVE_EXPENSE', removeExpenseAsync);
 };
 
-function* watchEditExpenseSaga() {
+export function* watchEditExpenseSaga() {
     yield takeEvery('EDIT_EXPENSE', editExpenseAsync);
 }
 
@@ -42,7 +38,8 @@ export function* setExpensesAsync() {
         type: 'SET_EXPENSES_COMPLETE',
         expenses
     });
-    yield call(ReactDOM.render, jsx, document.getElementById('app'))
+    // yield call(ReactDOM.render, jsx, document.getElementById('app'))
+    yield call(renderApp);
 };
 
 export function* removeExpenseAsync({ id }) {
@@ -60,13 +57,4 @@ export function* editExpenseAsync({ updates, id }) {
         id,
         updates
     });
-};
-
-export function* rootSaga() {
-    yield all([
-      watchAddExpenseSaga(),
-      watchSetExpensesSaga(),
-      watchRemoveExpenseSaga(),
-      watchEditExpenseSaga()
-    ]);
 };

@@ -1,7 +1,5 @@
 import { editExpenseComplete, removeExpenseComplete, addExpenseComplete, setExpensesComplete } from '../../actions/expenses';
 import expenses from '../fixtures/expenses';
-import * as firebase from 'firebase';
-
 
 test('should setup remove expense action object', () => {
     const action = removeExpenseComplete({ id: '123abc'});
