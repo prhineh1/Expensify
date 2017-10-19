@@ -30,6 +30,8 @@ export const get = () => {
     });
 };
 
+export const remove = (id) => database.ref(`expenses/${id}`).remove();
+
 // database.ref('expenses').on('child_removed', (snapshot) => {
 //     console.log(snapshot.key, snapshot.val());
 // });

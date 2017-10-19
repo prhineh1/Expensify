@@ -1,20 +1,12 @@
-import { editExpense, removeExpense, addExpenseComplete, setExpensesComplete } from '../../actions/expenses';
+import { editExpense, removeExpenseComplete, addExpenseComplete, setExpensesComplete } from '../../actions/expenses';
 import expenses from '../fixtures/expenses';
 import * as firebase from 'firebase';
-import { jsx } from '../../app';
 
-beforeEach((done) => {
-    const expensesData= {};
-    expenses.forEach(({ id, description, note, amount, createdAt }) => {
-        expensesData[id] = { description, note, amount, createdAt };
-    });
-    firebase.database().ref('expenses').set(expensesData).then(() => done());
-});
 
 test('should setup remove expense action object', () => {
-    const action = removeExpense({ id: '123abc'});
+    const action = removeExpenseComplete({ id: '123abc'});
     expect(action).toEqual({
-        type:'REMOVE_EXPENSE',
+        type:'REMOVE_EXPENSE_COMPLETE',
         id: '123abc'
     });
 });
@@ -44,7 +36,7 @@ test('should setup add expense action with provided values', () => {
         expense: {
             ...expenseData,
         }
-    })
+    });
 });
 
 test('should setup add expense action object with default values', () => {

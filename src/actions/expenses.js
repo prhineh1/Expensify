@@ -15,8 +15,13 @@ export const addExpenseComplete = (expense = {}) => ({
 
 //REMOVE_EXPENSE
 
-export const removeExpense = ({id} = {}) => ({
+export const removeExpense = ({ id } = {}) => ({
     type: 'REMOVE_EXPENSE',
+    id
+});
+
+export const removeExpenseComplete = ({ id } = {}) => ({
+    type: 'REMOVE_EXPENSE_COMPLETE',
     id
 });
 

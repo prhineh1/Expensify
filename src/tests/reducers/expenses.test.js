@@ -9,7 +9,7 @@ test('should set default state', () => {
 
 test('should remove expnese by id', () => {
     const action = {
-        type: 'REMOVE_EXPENSE',
+        type: 'REMOVE_EXPENSE_COMPLETE',
         id: expenses[1].id
     };
     const state = expensesReducer(expenses, action);
@@ -18,7 +18,7 @@ test('should remove expnese by id', () => {
 
 test('should not remove expnese by id', () => {
     const action = {
-        type: 'REMOVE_EXPENSE',
+        type: 'REMOVE_EXPENSE_COMPLETE',
         id: 'a;lsdfj32rj'
     };
     const state = expensesReducer(expenses, action);
