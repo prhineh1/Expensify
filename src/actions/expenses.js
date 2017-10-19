@@ -27,3 +27,12 @@ export const editExpense = (id, updates) => ({
     id,
     updates
 });
+
+//SET_EXPENSES
+
+export const setExpenses = () => ({ type: 'SET_EXPENSES' });
+
+export const setExpensesComplete = (expenses) => ({
+    type: 'SET_EXPENSES_COMPLETE',
+    expenses
+});

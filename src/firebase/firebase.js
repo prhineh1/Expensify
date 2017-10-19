@@ -15,6 +15,21 @@ const database = firebase.database();
 
 export const create = (expense) => database.ref('expenses').push(expense);
 
+export const get = () => {
+  return database.ref('expenses')
+    .once('value')
+    .then((snapshot) => {
+      const expenses = [];
+      snapshot.forEach((childSnap) => {
+        expenses.push({
+          id: childSnap.key,
+          ...childSnap.val()
+        });
+      });
+      return expenses;
+    });
+};
+
 // database.ref('expenses').on('child_removed', (snapshot) => {
 //     console.log(snapshot.key, snapshot.val());
 // });
