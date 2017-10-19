@@ -32,6 +32,8 @@ export const get = () => {
 
 export const remove = (id) => database.ref(`expenses/${id}`).remove();
 
+export const edit = (updates, id) => database.ref(`expenses/${id}`).update({ ...updates })
+
 // database.ref('expenses').on('child_removed', (snapshot) => {
 //     console.log(snapshot.key, snapshot.val());
 // });

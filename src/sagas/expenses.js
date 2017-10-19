@@ -22,6 +22,10 @@ function* watchRemoveExpenseSaga() {
     yield takeEvery('REMOVE_EXPENSE', removeExpenseAsync);
 };
 
+function* watchEditExpenseSaga() {
+    yield takeEvery('EDIT_EXPENSE', editExpenseAsync);
+}
+
 //WORKERS
 
 export function* addExpenseAsync({ expense }) {
@@ -42,17 +46,27 @@ export function* setExpensesAsync() {
 };
 
 export function* removeExpenseAsync({ id }) {
-    const response = yield call(Api.remove, id);
+    yield call(Api.remove, id);
     yield put({
         type: 'REMOVE_EXPENSE_COMPLETE',
         id
     });
-}
+};
+
+export function* editExpenseAsync({ updates, id }) {
+    yield call(Api.edit, updates, id);
+    yield put({
+        type: 'EDIT_EXPENSES_COMPLETE',
+        id,
+        updates
+    });
+};
 
 export function* rootSaga() {
     yield all([
       watchAddExpenseSaga(),
       watchSetExpensesSaga(),
-      watchRemoveExpenseSaga()
+      watchRemoveExpenseSaga(),
+      watchEditExpenseSaga()
     ]);
 };

@@ -1,4 +1,4 @@
-import { editExpense, removeExpenseComplete, addExpenseComplete, setExpensesComplete } from '../../actions/expenses';
+import { editExpenseComplete, removeExpenseComplete, addExpenseComplete, setExpensesComplete } from '../../actions/expenses';
 import expenses from '../fixtures/expenses';
 import * as firebase from 'firebase';
 
@@ -12,9 +12,9 @@ test('should setup remove expense action object', () => {
 });
 
 test('should setup edit expense action object', () => {
-    const action = editExpense('123abc', { description: 'test-case'});
+    const action = editExpenseComplete('123abc', { description: 'test-case'});
     expect(action).toEqual({
-        type: 'EDIT_EXPENSE',
+        type: 'EDIT_EXPENSE_COMPLETE',
         id: '123abc',
         updates: {
             description: 'test-case'

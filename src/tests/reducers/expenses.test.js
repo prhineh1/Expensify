@@ -47,7 +47,7 @@ test('should edit an expense', () => {
         amount: 777
     };
     const action = {
-        type: 'EDIT_EXPENSE',
+        type: 'EDIT_EXPENSE_COMPLETE',
         id: expenses[0].id,
         updates
     };
@@ -61,7 +61,7 @@ test('should not edit an expense if expense not found', () => {
         amount: 777
     };
     const action = {
-        type: 'EDIT_EXPENSE',
+        type: 'EDIT_EXPENSE_COMPLETE',
         id: expenses[0].id + '21',
         updates
     };

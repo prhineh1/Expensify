@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import AppRouter from '../../routers/AppRouter';
 import configureStore from '../../store/configureStore';
-import { addExpenseAsync, setExpensesAsync, removeExpenseAsync } from '../../sagas/expenses';
-import { addExpense, removeExpense } from '../../actions/expenses';
+import { addExpenseAsync, setExpensesAsync, removeExpenseAsync, editExpenseAsync } from '../../sagas/expenses';
+import { addExpense, removeExpense, editExpense } from '../../actions/expenses';
 import { call, put } from 'redux-saga/effects';
 import expenses from '../fixtures/expenses';
 import * as Api from '../../firebase/firebase';
@@ -72,6 +72,31 @@ describe('testing removeExpenseAsync', () => {
         expect(response).toEqual({done: true, value: undefined});
     });
 });
+
+describe('testing editExpenseAsync', () => {
+    const updates = {
+        note: 'updated'
+    };
+    const sagaExpense = editExpense({ updates, id: 'hi'  })
+    const iterator = editExpenseAsync(sagaExpense);
+    test('should return value from first iterator', () => {
+        const response = iterator.next().value;
+        expect(response).toEqual(call(Api.edit, updates, 'hi'));
+    });
+    test('should return value from second iterator', () => {
+        const response = iterator.next().value;
+        expect(response).toEqual(put({
+            type: 'EDIT_EXPENSE_COMPLETE',
+            id: 'hi',
+            updates
+        }));
+    });
+    test('Saga should be done', () => {
+        const response = iterator.next();
+        expect(response).toEqual({done: true, value: undefined});
+    });
+});
+
 
 
 

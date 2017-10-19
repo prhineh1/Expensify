@@ -30,7 +30,19 @@ test('should delete an expense from firebase', (done) => {
     Api.remove('1').then(() => {
         return firebase.database().ref('expenses/1').once('value')
     }).then((snapshot) => {
-        expect(snapshot.value).toEqual(undefined);
+        expect(snapshot.val()).toBeFalsy();
+        done();
+    });
+});
+
+test('should edit an expense if firebase', (done) => {
+    const updates = {
+        note: 'This has been updated',
+    };
+    Api.edit(updates, '2').then(() => {
+        return firebase.database().ref('expenses/2/note').once('value')
+    }).then((snapshot) => {
+        expect(snapshot.val()).toBe(updates.note);
         done();
     });
 });
