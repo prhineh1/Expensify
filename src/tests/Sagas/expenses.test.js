@@ -1,8 +1,3 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import AppRouter from '../../routers/AppRouter';
-import configureStore from '../../store/configureStore';
 import { addExpenseAsync, setExpensesAsync, removeExpenseAsync, editExpenseAsync } from '../../sagas/expenses';
 import { addExpense, removeExpense, editExpense, setExpenses } from '../../actions/expenses';
 import { call, put } from 'redux-saga/effects';
@@ -32,8 +27,7 @@ describe('testing addExpenseAsync', () => {
 });
 
 describe('testing setExpensesAsync', () => {
-    const sagaExpense = setExpense(uid);
-    const iterator = setExpensesAsync(sagaExpense);
+    const iterator = setExpensesAsync(uid);
     test('should return value from first iterator', () => {
         const response = iterator.next().value;
         expect(response).toEqual(call(Api.get, uid));
@@ -44,10 +38,6 @@ describe('testing setExpensesAsync', () => {
             type: 'SET_EXPENSES_COMPLETE',
             expenses
         }));
-    });
-    test('should return value from third iterator', () => {
-        const response = iterator.next(expenses).value;
-        expect(response).toEqual(expect.any(Object));
     });
     test('Saga should be done', () => {
         const response = iterator.next();

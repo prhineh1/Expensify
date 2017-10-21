@@ -7,19 +7,19 @@ import filterReducer from '../reducers/filters';
 import authReducer from '../reducers/auth';
 import { rootSaga } from '../sagas/root';
 
-const sagaMiddleware = createSagaMiddleware();
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-
 export default () => {
-    const store = createStore(
-        combineReducers({
-            expenses: expensesReducer,
-            filters: filterReducer,
-            auth: authReducer
-        }),
-        composeEnhancers(applyMiddleware(sagaMiddleware))
-    );
-    sagaMiddleware.run(rootSaga);    
-    return store;
+    const sagaMiddleware = createSagaMiddleware();
+    const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+    return {
+        ...createStore(
+            combineReducers({
+                expenses: expensesReducer,
+                filters: filterReducer,
+                auth: authReducer
+            }),
+            composeEnhancers(applyMiddleware(sagaMiddleware))
+        ),
+        runSaga: sagaMiddleware.run
+    }   
 };
 

@@ -5,7 +5,8 @@ import AppRouter, { history } from './routers/AppRouter';
 import configureStore from './store/configureStore';
 import { setExpenses } from './actions/expenses';
 import { login, logout } from './actions/auth';
-import getVisibleExpenses from './selectors/expenses';
+import { setExpensesAsync } from './sagas/expenses';
+import { rootSaga } from './sagas/root';
 import * as firebase from 'firebase';
 import 'normalize.css/normalize.css';
 import './styles/styles.scss';
@@ -13,13 +14,14 @@ import 'react-dates/lib/css/_datepicker.css';
 import './firebase/firebase';
 
 const store = configureStore();
+store.runSaga(rootSaga);
 export const jsx = (
     <Provider store={store}>
         <AppRouter />
     </Provider>
 );
 
-export let hasRendered = false;
+let hasRendered = false;
 export const renderApp = () => {
     if(!hasRendered) {
         ReactDOM.render(jsx, document.getElementById('app'));
@@ -32,10 +34,12 @@ ReactDOM.render(<p>Loading...</p>, document.getElementById('app'));
 firebase.auth().onAuthStateChanged((user) => {
     if (user) {
         store.dispatch(login(user.uid));
-        store.dispatch(setExpenses(user.uid)); 
-        if (history.location.pathname === '/') {
-            history.push('/dashboard');
-        }
+        store.runSaga(setExpensesAsync, user.uid).done.then(() => {
+            renderApp();
+            if (history.location.pathname === '/') {
+                history.push('/dashboard');
+            }
+        });
     } else {
         store.dispatch(logout());
         renderApp();        

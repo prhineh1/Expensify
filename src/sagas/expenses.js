@@ -2,8 +2,6 @@ import ReactDOM from 'react-dom';
 import { takeEvery } from 'redux-saga';
 import { put, all, call } from 'redux-saga/effects'
 import * as Api from '../firebase/firebase';
-import configureStore from '../store/configureStore';
-import { jsx, renderApp } from '../app';
 
 //WATCHERS
 
@@ -33,13 +31,12 @@ export function* addExpenseAsync({ expense, uid }) {
     });
 };
 
-export function* setExpensesAsync({ uid }) {
+export function* setExpensesAsync(uid) {
     const expenses = yield call(Api.get, uid);
     yield put({
         type: 'SET_EXPENSES_COMPLETE',
         expenses
     });
-    yield call(renderApp);
 };
 
 export function* removeExpenseAsync({ id, uid }) {
@@ -55,7 +52,6 @@ export function* editExpenseAsync({ updates, id, uid }) {
     yield put({
         type: 'EDIT_EXPENSE_COMPLETE',
         id,
-        updates,
-        uid
+        updates
     });
 };
