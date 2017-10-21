@@ -4,18 +4,19 @@ import { Provider } from 'react-redux';
 import AppRouter from '../../routers/AppRouter';
 import configureStore from '../../store/configureStore';
 import { addExpenseAsync, setExpensesAsync, removeExpenseAsync, editExpenseAsync } from '../../sagas/expenses';
-import { addExpense, removeExpense, editExpense } from '../../actions/expenses';
+import { addExpense, removeExpense, editExpense, setExpenses } from '../../actions/expenses';
 import { call, put } from 'redux-saga/effects';
 import expenses from '../fixtures/expenses';
 import * as Api from '../../firebase/firebase';
 
+const uid ='abc123';
 
 describe('testing addExpenseAsync', () => {
-    const sagaExpense = addExpense(expenses[1]);
+    const sagaExpense = addExpense(expenses[1], uid);
     const iterator = addExpenseAsync(sagaExpense);
     test('should return value from first iterator', () => {
         const response = iterator.next().value;
-        expect(response).toEqual(call(Api.create, expenses[1]));
+        expect(response).toEqual(call(Api.create, expenses[1], uid));
     });
     test('should return value from second iterator', () => {
         const response = iterator.next(expenses[1]).value;
@@ -31,10 +32,11 @@ describe('testing addExpenseAsync', () => {
 });
 
 describe('testing setExpensesAsync', () => {
-    const iterator = setExpensesAsync();
+    const sagaExpense = setExpense(uid);
+    const iterator = setExpensesAsync(sagaExpense);
     test('should return value from first iterator', () => {
         const response = iterator.next().value;
-        expect(response).toEqual(call(Api.get));
+        expect(response).toEqual(call(Api.get, uid));
     });
     test('should return value from second iterator', () => {
         const response = iterator.next(expenses).value;
@@ -54,11 +56,11 @@ describe('testing setExpensesAsync', () => {
 });
 
 describe('testing removeExpenseAsync', () => {
-    const sagaExpense = removeExpense({ id: 'hi'})
+    const sagaExpense = removeExpense({ id: 'hi', uid })
     const iterator = removeExpenseAsync(sagaExpense);
     test('should return value from first iterator', () => {
         const response = iterator.next().value;
-        expect(response).toEqual(call(Api.remove, 'hi'));
+        expect(response).toEqual(call(Api.remove, 'hi', uid));
     });
     test('should return value from second iterator', () => {
         const response = iterator.next().value;
@@ -77,11 +79,11 @@ describe('testing editExpenseAsync', () => {
     const updates = {
         note: 'updated'
     };
-    const sagaExpense = editExpense({ updates, id: 'hi'  })
+    const sagaExpense = editExpense('hi', updates, uid);
     const iterator = editExpenseAsync(sagaExpense);
     test('should return value from first iterator', () => {
         const response = iterator.next().value;
-        expect(response).toEqual(call(Api.edit, updates, 'hi'));
+        expect(response).toEqual(call(Api.edit, updates, 'hi', uid));
     });
     test('should return value from second iterator', () => {
         const response = iterator.next().value;

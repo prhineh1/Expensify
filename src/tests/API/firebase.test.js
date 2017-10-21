@@ -2,17 +2,20 @@ import * as firebase from 'firebase';
 import * as Api from '../../firebase/firebase';
 import expenses from '../fixtures/expenses'
 
+let uid;
+
 beforeAll((done) => {
+    uid = 'abc123';
     const expensesData= {};
     expenses.forEach(({ id, description, note, amount, createdAt }) => {
         expensesData[id] = { description, note, amount, createdAt };
     });
-    firebase.database().ref('expenses').set(expensesData).then(() => done());
+    firebase.database().ref(`users/${uid}/expenses`).set(expensesData).then(() => done());
 });
 
 test('should add an expense to firebase', (done) => {
-    Api.create(expenses[1]).then((ref) => {
-      return firebase.database().ref(`expenses/${ref.key}`).once('value');   
+    Api.create(expenses[1], uid).then((ref) => {
+      return firebase.database().ref(`users/${uid}/expenses/${ref.key}`).once('value');   
     }).then((snapshot) => {
         expect(snapshot.val()).toEqual(expenses[1]); 
         done();  
@@ -20,27 +23,27 @@ test('should add an expense to firebase', (done) => {
 });
 
 test('should fetch expenses from firebase', (done) => {
-    Api.get().then((expenses) => {
+    Api.get(uid).then((expenses) => {
         expect(expenses).toEqual(expect.any(Array));
         done();
     });
 });
 
 test('should delete an expense from firebase', (done) => {
-    Api.remove('1').then(() => {
-        return firebase.database().ref('expenses/1').once('value')
+    Api.remove('1', uid).then(() => {
+        return firebase.database().ref(`users/${uid}/expenses/1`).once('value')
     }).then((snapshot) => {
         expect(snapshot.val()).toBeFalsy();
         done();
     });
 });
 
-test('should edit an expense if firebase', (done) => {
+test('should edit an expense in firebase', (done) => {
     const updates = {
         note: 'This has been updated',
     };
-    Api.edit(updates, '2').then(() => {
-        return firebase.database().ref('expenses/2/note').once('value')
+    Api.edit(updates, '2', uid).then(() => {
+        return firebase.database().ref(`users/${uid}/expenses/2/note`).once('value')
     }).then((snapshot) => {
         expect(snapshot.val()).toBe(updates.note);
         done();

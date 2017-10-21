@@ -2,6 +2,7 @@ import ReactDOM from 'react-dom';
 import { takeEvery } from 'redux-saga';
 import { put, all, call } from 'redux-saga/effects'
 import * as Api from '../firebase/firebase';
+import configureStore from '../store/configureStore';
 import { jsx, renderApp } from '../app';
 
 //WATCHERS
@@ -24,37 +25,37 @@ export function* watchEditExpenseSaga() {
 
 //WORKERS
 
-export function* addExpenseAsync({ expense }) {
-    const response = yield call(Api.create, expense);
+export function* addExpenseAsync({ expense, uid }) {
+    const response = yield call(Api.create, expense, uid);
     yield put({ 
         type: 'ADD_EXPENSE_COMPLETE', 
         expense: { id: response.key, ...expense}
     });
 };
 
-export function* setExpensesAsync() {
-    const expenses = yield call(Api.get);
+export function* setExpensesAsync({ uid }) {
+    const expenses = yield call(Api.get, uid);
     yield put({
         type: 'SET_EXPENSES_COMPLETE',
         expenses
     });
-    // yield call(ReactDOM.render, jsx, document.getElementById('app'))
     yield call(renderApp);
 };
 
-export function* removeExpenseAsync({ id }) {
-    yield call(Api.remove, id);
+export function* removeExpenseAsync({ id, uid }) {
+    yield call(Api.remove, id, uid);
     yield put({
         type: 'REMOVE_EXPENSE_COMPLETE',
         id
     });
 };
 
-export function* editExpenseAsync({ updates, id }) {
-    yield call(Api.edit, updates, id);
+export function* editExpenseAsync({ updates, id, uid }) {
+    yield call(Api.edit, updates, id, uid);
     yield put({
-        type: 'EDIT_EXPENSES_COMPLETE',
+        type: 'EDIT_EXPENSE_COMPLETE',
         id,
-        updates
+        updates,
+        uid
     });
 };

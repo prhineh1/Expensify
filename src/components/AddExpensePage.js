@@ -5,7 +5,7 @@ import ExpenseForm from './ExpenseForm';
 
 export class AddExpensePage extends React.Component {
     onSubmit = (expense) => {
-        this.props.addExpense(expense)
+        this.props.addExpense(expense, this.props.uid)
         this.props.history.push('/');
     };
     render() {
@@ -20,8 +20,10 @@ export class AddExpensePage extends React.Component {
     }
 }
 
+const mapStateToProps = (state) => ({ uid: state.auth.uid });
+
 const mapDispatchToProps = (dispatch) => ({
-    addExpense: (expense) => dispatch(addExpense(expense))
+    addExpense: (expense, uid) => dispatch(addExpense(expense, uid))
 });
 
-export default connect(null, mapDispatchToProps)(AddExpensePage);
+export default connect(mapStateToProps, mapDispatchToProps)(AddExpensePage);

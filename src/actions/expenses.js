@@ -3,21 +3,23 @@ import database from '../firebase/firebase';
 
 //ADD_EXPENSE
 
-export const addExpense = (expense = {}) => ({
+export const addExpense = (expense = {}, uid) => ({
     type: 'ADD_EXPENSE',
-    expense
+    expense,
+    uid
 });
 
 export const addExpenseComplete = (expense = {}) => ({
     type: 'ADD_EXPENSE_COMPLETE',
-    expense
+    expense,
 });
 
 //REMOVE_EXPENSE
 
-export const removeExpense = ({ id } = {}) => ({
+export const removeExpense = ({ id, uid } = {}) => ({
     type: 'REMOVE_EXPENSE',
-    id
+    id,
+    uid
 });
 
 export const removeExpenseComplete = ({ id } = {}) => ({
@@ -27,10 +29,11 @@ export const removeExpenseComplete = ({ id } = {}) => ({
 
 //EDIT_EXPENSE
 
-export const editExpense = (id, updates) => ({
+export const editExpense = (id, updates, uid) => ({
     type: 'EDIT_EXPENSE',
     id,
-    updates
+    updates,
+    uid
 });
 
 export const editExpenseComplete = (id, updates) => ({
@@ -41,7 +44,7 @@ export const editExpenseComplete = (id, updates) => ({
 
 //SET_EXPENSES
 
-export const setExpenses = () => ({ type: 'SET_EXPENSES' });
+export const setExpenses = (uid) => ({ type: 'SET_EXPENSES', uid });
 
 export const setExpensesComplete = (expenses) => ({
     type: 'SET_EXPENSES_COMPLETE',

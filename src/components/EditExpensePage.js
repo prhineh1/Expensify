@@ -5,11 +5,11 @@ import ExpenseForm from './ExpenseForm';
 
 export class EditExpensePage extends React.Component {
     onSubmit = (expense) => {
-        this.props.editExpense(this.props.expense.id, expense);
+        this.props.editExpense(this.props.expense.id, expense, this.props.uid);
         this.props.history.push('/');
     };
     removeExpense = () => {
-        this.props.removeExpense({ id: this.props.expense.id });
+        this.props.removeExpense({ id: this.props.expense.id, uid: this.props.uid });
         this.props.history.push('/');
     };
     render() {
@@ -26,15 +26,14 @@ export class EditExpensePage extends React.Component {
     }
 };
 
-const mapStateToProps = (state, props) => {
-    return {
-        expense: state.expenses.find((expense) => expense.id === props.match.params.id)
-    };
-};
+const mapStateToProps = (state, props) => ({
+    expense: state.expenses.find((expense) => expense.id === props.match.params.id),
+    uid: state.auth.uid
+});
 
 const mapDispatchToProps = (dispatch, props) => ({
-    editExpense: (id, expense) => dispatch(editExpense(id, expense)),
-    removeExpense: (id) => dispatch(removeExpense(id))
+    editExpense: (id, expense, uid) => dispatch(editExpense(id, expense, uid)),
+    removeExpense: (id, uid) => dispatch(removeExpense(id, uid))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditExpensePage);
