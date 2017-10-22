@@ -15,10 +15,20 @@ export function* watchStartLogoutSaga() {
 //WORKERS
 
 export function* startLoginAsync() {
-    yield call(Api.login);
+    try {
+        yield call(Api.login);        
+    }
+    catch(error) {
+        return;
+    }
 };
 
 export function* startLogoutAsync() {
-    yield call(Api.logout);
+    try {
+        yield call(Api.logout);        
+    }
+    catch(error) {
+        return;
+    }
 }
 

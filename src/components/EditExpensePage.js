@@ -2,8 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { editExpense, removeExpense } from '../actions/expenses'
 import ExpenseForm from './ExpenseForm';
+import RemoveExpenseModal from './RemoveExpenseModal';
 
 export class EditExpensePage extends React.Component {
+    state = {
+        isOpen: false
+    };
     onSubmit = (expense) => {
         this.props.editExpense(this.props.expense.id, expense, this.props.uid);
         this.props.history.push('/');
@@ -12,6 +16,7 @@ export class EditExpensePage extends React.Component {
         this.props.removeExpense({ id: this.props.expense.id, uid: this.props.uid });
         this.props.history.push('/');
     };
+    toggleModal = () => this.setState((prevState) => ({ isOpen: !prevState.isOpen }));
     render() {
         return (
         <div>
@@ -24,10 +29,14 @@ export class EditExpensePage extends React.Component {
                 <ExpenseForm
                     expense={this.props.expense}
                     onSubmit={this.onSubmit} />
-                <button className='button button--secondary' onClick={this.removeExpense} >
+                <button className='button button--secondary' onClick={this.toggleModal} >
                         Remove Expense
                 </button>
             </div>
+            <RemoveExpenseModal 
+                toggleModal={this.toggleModal} 
+                removeExpense={this.removeExpense}
+                isOpen={this.state.isOpen} />
         </div>
         );
     }

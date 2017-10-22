@@ -24,34 +24,54 @@ export function* watchEditExpenseSaga() {
 //WORKERS
 
 export function* addExpenseAsync({ expense, uid }) {
-    const response = yield call(Api.create, expense, uid);
-    yield put({ 
-        type: 'ADD_EXPENSE_COMPLETE', 
-        expense: { id: response.key, ...expense}
-    });
+    try {
+        const response = yield call(Api.create, expense, uid);  
+        yield put({ 
+            type: 'ADD_EXPENSE_COMPLETE', 
+            expense: { id: response.key, ...expense}
+        });      
+    }
+    catch(error) {
+        return;
+    }
 };
 
 export function* setExpensesAsync(uid) {
-    const expenses = yield call(Api.get, uid);
-    yield put({
-        type: 'SET_EXPENSES_COMPLETE',
-        expenses
-    });
+    try {
+        const expenses = yield call(Api.get, uid);  
+        yield put({
+            type: 'SET_EXPENSES_COMPLETE',
+            expenses
+        });      
+    }
+    catch(error) {
+        return;
+    }
 };
 
 export function* removeExpenseAsync({ id, uid }) {
-    yield call(Api.remove, id, uid);
-    yield put({
-        type: 'REMOVE_EXPENSE_COMPLETE',
-        id
-    });
+    try {
+        yield call(Api.remove, id, uid);  
+        yield put({
+            type: 'REMOVE_EXPENSE_COMPLETE',
+            id
+        });      
+    }
+    catch(error) {
+        return;
+    }
 };
 
 export function* editExpenseAsync({ updates, id, uid }) {
-    yield call(Api.edit, updates, id, uid);
-    yield put({
-        type: 'EDIT_EXPENSE_COMPLETE',
-        id,
-        updates
-    });
+    try {
+        yield call(Api.edit, updates, id, uid); 
+        yield put({
+            type: 'EDIT_EXPENSE_COMPLETE',
+            id,
+            updates
+        });       
+    }
+    catch(error) {
+        return;
+    }
 };

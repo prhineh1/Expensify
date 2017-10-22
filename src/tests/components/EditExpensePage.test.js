@@ -3,17 +3,15 @@ import { shallow } from 'enzyme';
 import { EditExpensePage } from '../../components/EditExpensePage';
 import expenses from '../fixtures/expenses';
 
-let editExpense, removeExpense, history, wrapper, uid;
+let editExpense, history, wrapper, uid;
 
 beforeEach(() => {
      uid = 'abc123';
      editExpense = jest.fn();
-     removeExpense = jest.fn();
      history =  { push: jest.fn() };
      wrapper = shallow(<EditExpensePage   
         editExpense={editExpense} 
         history={history} 
-        removeExpense={removeExpense} 
         expense={expenses[1]}
         uid={uid} />);
 });
@@ -28,8 +26,7 @@ test('should handle editExpense', () => {
     expect(editExpense).toHaveBeenLastCalledWith(expenses[1].id, expenses[1], uid);
 });
 
-test('should handle removeExpense', () => {
+test('should handle toggleModal', () => {
     wrapper.find('button').simulate('click');
-    expect(history.push).toHaveBeenLastCalledWith('/');
-    expect(removeExpense).toHaveBeenLastCalledWith( { id: expenses[1].id, uid } );
+    expect(wrapper.state('isOpen')).toBe(true);
 });

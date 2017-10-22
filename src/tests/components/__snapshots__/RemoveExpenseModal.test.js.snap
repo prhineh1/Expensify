@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render RemoveExpensemodal 1`] = `
+<Modal
+  ariaHideApp={true}
+  bodyOpenClassName="ReactModal__Body--open"
+  className="modal"
+  closeTimeoutMS={200}
+  contentLabel="Remove Expense Warning"
+  isOpen={true}
+  onRequestClose={[Function]}
+  parentSelector={[Function]}
+  portalClassName="ReactModalPortal"
+  shouldCloseOnOverlayClick={true}
+  shouldFocusAfterRender={true}
+>
+  <h3
+    className="modal__title"
+  >
+    Are you sure you want to remove this expense?
+  </h3>
+  <div
+    className="modal__body"
+  >
+    <button
+      className="button button--secondary"
+      onClick={[Function]}
+    >
+      Yes
+    </button>
+    <button
+      className="button button--secondary"
+      onClick={[Function]}
+    >
+      No
+    </button>
+  </div>
+</Modal>
+`;
