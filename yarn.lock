@@ -3687,6 +3687,16 @@ js-base64@^2.1.8, js-base64@^2.1.9:
   version "2.3.2"
   resolved "https://registry.yarnpkg.com/js-base64/-/js-base64-2.3.2.tgz#a79a923666372b580f8e27f51845c6f7e8fbfbaf"
 
+js-partition@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/js-partition/-/js-partition-1.0.0.tgz#f32bac91ec52e8072495b82f7722c19ccb5f1970"
+  dependencies:
+    js-take "^1.0.0"
+
+js-take@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/js-take/-/js-take-1.0.0.tgz#46b5057241b1d28af5facc321992a9a9d4a928a5"
+
 js-tokens@^3.0.0, js-tokens@^3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-3.0.2.tgz#9866df395102130e38f7f996bceb65443209c25b"

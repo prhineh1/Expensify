@@ -10,6 +10,37 @@ exports[`should render ExpenseListFilters 1`] = `
     <div
       className="input-group__item"
     >
+      <select
+        className="select"
+        id="pagination"
+        onChange={[Function]}
+        value={5}
+      >
+        <option
+          value="5"
+        >
+          5 Expenses per page
+        </option>
+        <option
+          value="10"
+        >
+          10 Expenses per page
+        </option>
+        <option
+          value="25"
+        >
+          25 Expenses per page
+        </option>
+        <option
+          value="50"
+        >
+          50 Expenses per page
+        </option>
+      </select>
+    </div>
+    <div
+      className="input-group__item"
+    >
       <input
         className="text-input"
         onChange={[Function]}
@@ -39,7 +70,7 @@ exports[`should render ExpenseListFilters 1`] = `
       </select>
     </div>
     <div
-      className="input-group__item"
+      className="input-group__item input-group__item--datepicker"
     >
       <DateRangePicker
         anchorDirection="left"
@@ -135,6 +166,36 @@ exports[`should render ExpenseListFilters with alt data 1`] = `
     <div
       className="input-group__item"
     >
+      <select
+        className="select"
+        id="pagination"
+        onChange={[Function]}
+      >
+        <option
+          value="5"
+        >
+          5 Expenses per page
+        </option>
+        <option
+          value="10"
+        >
+          10 Expenses per page
+        </option>
+        <option
+          value="25"
+        >
+          25 Expenses per page
+        </option>
+        <option
+          value="50"
+        >
+          50 Expenses per page
+        </option>
+      </select>
+    </div>
+    <div
+      className="input-group__item"
+    >
       <input
         className="text-input"
         onChange={[Function]}
@@ -162,7 +223,7 @@ exports[`should render ExpenseListFilters with alt data 1`] = `
       </select>
     </div>
     <div
-      className="input-group__item"
+      className="input-group__item input-group__item--datepicker"
     >
       <DateRangePicker
         anchorDirection="left"

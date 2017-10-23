@@ -20,9 +20,13 @@ export const ExpensesSummary = (props) => (
     </div>
 );
 
-const mapStateToProps = (state) => ({
-    expenseCount: selectExpenses(state.expenses, state.filters).length,
-    expensesTotal: expensesTotal(selectExpenses(state.expenses, state.filters))
-});
+const mapStateToProps = (state) => {
+    const [partitionedExpenses, selectedExpenses] = selectExpenses(state.expenses, state.filters);    
+    return {
+        expenseCount: selectedExpenses.length,
+        expensesTotal: expensesTotal(selectedExpenses)
+    };
+
+};
 
 export default connect(mapStateToProps)(ExpensesSummary);

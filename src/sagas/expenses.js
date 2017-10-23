@@ -19,7 +19,7 @@ export function* watchRemoveExpenseSaga() {
 
 export function* watchEditExpenseSaga() {
     yield takeEvery('EDIT_EXPENSE', editExpenseAsync);
-}
+};
 
 //WORKERS
 

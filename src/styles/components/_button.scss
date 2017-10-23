@@ -17,3 +17,11 @@
 .button--secondary {
     background: #888888;
 }
+
+.button--nav {
+    margin-bottom: $m-size;
+
+    @media (min-width: $desktop-breakpoint) {
+        margin-bottom: $l-size;
+    }
+}

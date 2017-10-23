@@ -34,6 +34,9 @@ exports[`should render ExpenseList with empty message 1`] = `
       </span>
     </div>
   </div>
+  <div
+    className="list-nav"
+  />
 </div>
 `;
 
@@ -87,6 +90,79 @@ exports[`should render ExpenseList with expenses 1`] = `
       key="3"
       note=""
     />
+  </div>
+  <div
+    className="list-nav"
+  />
+</div>
+`;
+
+exports[`should render ExpenseList with partitioned expenses 1`] = `
+<div
+  className="content-container"
+>
+  <div
+    className="list-header"
+  >
+    <div
+      className="show-for-mobile"
+    >
+      Expenses
+    </div>
+    <div
+      className="show-for-desktop"
+    >
+      Expense
+    </div>
+    <div
+      className="show-for-desktop"
+    >
+      Amount
+    </div>
+  </div>
+  <div
+    className="list-body"
+  >
+    <ExpenseListItem
+      amount={195}
+      createdAt={0}
+      description="Gum"
+      id="1"
+      key="1"
+      note=""
+    />
+    <ExpenseListItem
+      amount={10095}
+      createdAt={-345600000}
+      description="Rent"
+      id="2"
+      key="2"
+      note=""
+    />
+    <ExpenseListItem
+      amount={4500}
+      createdAt={345600000}
+      description="Credit Card"
+      id="3"
+      key="3"
+      note=""
+    />
+  </div>
+  <div
+    className="list-nav"
+  >
+    <button
+      className="button button--nav"
+      onClick={[Function]}
+    >
+      Next
+    </button>
+    <button
+      className="button button--nav"
+      onClick={[Function]}
+    >
+      Previous
+    </button>
   </div>
 </div>
 `;

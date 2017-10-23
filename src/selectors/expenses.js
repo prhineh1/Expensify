@@ -1,9 +1,10 @@
 import moment from 'moment';
+import partition from 'js-partition';
 
 //Get visible expenses
 
-export default (expenses, {text, sortBy, startDate, endDate}) => {
-    return expenses.filter((expense) => {
+export default (expenses, {text, sortBy, startDate, endDate, pagination, expensesPartitionIndex}) => {
+    let partitionedExpenses = expenses.filter((expense) => {
         const createdAtMoment = moment(expense.createdAt);
         const startDateMatch = startDate ? startDate.isSameOrBefore(createdAtMoment, 'day') : true;
         const endDateMatch = endDate ? endDate.isSameOrAfter(createdAtMoment, 'day') : true;
@@ -17,4 +18,13 @@ export default (expenses, {text, sortBy, startDate, endDate}) => {
             return b.amount - a.amount;
         }
     });
+    
+    if (partitionedExpenses.length % pagination === 0 && partitionedExpenses.length > 0) {
+        partitionedExpenses = partition(pagination, pagination, partitionedExpenses);
+    }
+    else {
+        partitionedExpenses = partition(pagination, pagination, [], partitionedExpenses);        
+    }
+
+    return [partitionedExpenses, partitionedExpenses[expensesPartitionIndex]];
 };

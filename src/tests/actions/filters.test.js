@@ -46,3 +46,35 @@ test('should generate set text filter action object with default value', () => {
         text: ''
     })
 });
+
+test('should generate set pagination filter object with arguments', () => {
+    const action = filters.setPagination(15);
+    expect(action).toEqual({
+        type: 'SET_PAGINATION',
+        pagination: 15
+    });
+});
+
+test('should generate set pagination filter object with default values', () => {
+    const action = filters.setPagination();
+    expect(action).toEqual({
+        type: 'SET_PAGINATION',
+        pagination: 5
+    });
+});
+
+test('should generate set partition index filter object with arguments', () => {
+    const action = filters.setPartitionIndex(2);
+    expect(action).toEqual({
+        type: 'SET_PARTITION_INDEX',
+        index: 2
+    });
+});
+
+test('should generate set partition index filter object with arguments', () => {
+    const action = filters.setPartitionIndex();
+    expect(action).toEqual({
+        type: 'SET_PARTITION_INDEX',
+        index: 0
+    });
+});

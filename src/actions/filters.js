@@ -30,3 +30,17 @@ export const setEndDate = (date = undefined) => ({
     type: 'SET_END_DATE',
     date
 });
+
+//SET_PAGINATION
+
+export const setPagination = (pagination = 5) => ({
+    type: 'SET_PAGINATION',
+    pagination
+});
+
+//SET_PARTITION_INDEX
+
+export const setPartitionIndex = (index = 0) => ({
+    type: 'SET_PARTITION_INDEX',
+    index
+});

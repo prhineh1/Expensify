@@ -7,7 +7,9 @@ test('should setup default filter values', () => {
         text: '',
         sortBy: 'date',
         startDate: moment().startOf('month'),
-        endDate: moment().endOf('month')
+        endDate: moment().endOf('month'),
+        pagination: 5,
+        expensesPartitionIndex: 0
     });
 });
 
@@ -51,5 +53,15 @@ test('should set endDate filter', () => {
     };
     const state = filtersReducer(undefined, action);
     expect(state.endDate).toEqual(date);
+});
+
+test('should set pagination filter', () => {
+    const state = filtersReducer(undefined, { type: 'SET_PAGINATION', pagination: 10});
+    expect(state.pagination).toBe(10);
+});
+
+test('should set expenses partition filter', () => {
+    const state = filtersReducer(undefined, { type: 'SET_PARTITION_INDEX', index: 1});
+    expect(state.expensesPartitionIndex).toBe(1);
 });
 

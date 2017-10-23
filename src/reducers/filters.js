@@ -6,7 +6,9 @@ const filtersReducerDefaultState = {
     text: '',
     sortBy: 'date',
     startDate: moment().startOf('month'),
-    endDate: moment().endOf('month')
+    endDate: moment().endOf('month'),
+    pagination: 5,
+    expensesPartitionIndex: 0
 };
 
 export default (state = filtersReducerDefaultState, action) => {
@@ -35,6 +37,16 @@ export default (state = filtersReducerDefaultState, action) => {
             return {
                 ...state,
                 endDate: action.date
+            };
+        case 'SET_PAGINATION':
+            return {
+                ...state,
+                pagination: action.pagination
+            };
+        case 'SET_PARTITION_INDEX':
+            return {
+                ...state,
+                expensesPartitionIndex: action.index
             };
         default:
             return state;

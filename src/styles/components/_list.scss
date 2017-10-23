@@ -63,3 +63,13 @@
         padding-left: $s-size
     }
 }
+
+.list-nav {
+    display: flex;
+    flex-direction: column;
+
+    @media (min-width: $desktop-breakpoint) {
+        flex-direction: row;        
+        justify-content: space-between;
+    }
+}

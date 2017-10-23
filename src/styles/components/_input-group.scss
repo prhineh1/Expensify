@@ -5,7 +5,9 @@
 
     @media (min-width: $desktop-breakpoint) {
         flex-direction: row;
-        margin-bottom: $l-size;        
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-bottom: $l-size;    
     }
 }
 
@@ -13,6 +15,16 @@
     margin-bottom: $s-size;
 
     @media (min-width: $desktop-breakpoint) {
-        margin: 0 $s-size 0 0;       
+        display: flex;
+        justify-content: center;
+        margin: 0;     
+        flex-grow: 1;  
+    }
+}
+
+.input-group__item--datepicker {
+    margin-bottom: 0;
+    @media (min-width: $desktop-breakpoint) {
+        margin-top: $s-size;
     }
 }
