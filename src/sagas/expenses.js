@@ -1,6 +1,5 @@
-import ReactDOM from 'react-dom';
 import { takeEvery } from 'redux-saga';
-import { put, all, call } from 'redux-saga/effects'
+import { put, all, call } from 'redux-saga/effects';
 import * as Api from '../firebase/firebase';
 
 //WATCHERS

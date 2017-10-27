@@ -3,21 +3,31 @@
 exports[`should render BudgetForm 1`] = `
 <div>
   <form
+    className="form"
     onSubmit={[Function]}
   >
     <input
       autoFocus={true}
+      className="text-input"
       onChange={[Function]}
       placeholder="Budget Description"
       type="text"
       value=""
     />
     <input
+      className="text-input"
       onChange={[Function]}
       placehoder="Budgeted Amount"
       type="text"
       value=""
     />
+    <div>
+      <button
+        className="button"
+      >
+        Save Budget
+      </button>
+    </div>
   </form>
 </div>
 `;
@@ -25,21 +35,31 @@ exports[`should render BudgetForm 1`] = `
 exports[`should render BudgetForm with a budget 1`] = `
 <div>
   <form
+    className="form"
     onSubmit={[Function]}
   >
     <input
       autoFocus={true}
+      className="text-input"
       onChange={[Function]}
       placeholder="Budget Description"
       type="text"
       value="utilities"
     />
     <input
+      className="text-input"
       onChange={[Function]}
       placehoder="Budgeted Amount"
       type="text"
       value="200"
     />
+    <div>
+      <button
+        className="button"
+      >
+        Save Changes
+      </button>
+    </div>
   </form>
 </div>
 `;
@@ -47,24 +67,36 @@ exports[`should render BudgetForm with a budget 1`] = `
 exports[`should render error for invalid form submission 1`] = `
 <div>
   <form
+    className="form"
     onSubmit={[Function]}
   >
-    <p>
+    <p
+      className="form__error"
+    >
       Please enter a description and amount.
     </p>
     <input
       autoFocus={true}
+      className="text-input"
       onChange={[Function]}
       placeholder="Budget Description"
       type="text"
       value=""
     />
     <input
+      className="text-input"
       onChange={[Function]}
       placehoder="Budgeted Amount"
       type="text"
       value=""
     />
+    <div>
+      <button
+        className="button"
+      >
+        Save Budget
+      </button>
+    </div>
   </form>
 </div>
 `;

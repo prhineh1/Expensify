@@ -38,3 +38,5 @@ export const edit = (updates, id, uid) => database.ref(`users/${uid}/expenses/${
 export const login = () => firebase.auth().signInWithPopup(googleAuthProvider)
 
 export const logout = () => firebase.auth().signOut();
+
+export const createBudget = (budget, uid) => database.ref(`users/${uid}/budgets`).push(budget);

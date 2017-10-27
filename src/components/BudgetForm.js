@@ -33,9 +33,10 @@ export default class BudgetForm extends React.Component {
   render() {
     return (
       <div>
-        <form onSubmit={this.onSubmit}>
-          {this.state.error && <p>{this.state.error}</p>}
+        <form className='form' onSubmit={this.onSubmit}>
+          {this.state.error && <p className='form__error'>{this.state.error}</p>}
           <input
+            className="text-input"
             type='text'
             placeholder='Budget Description'
             autoFocus
@@ -43,11 +44,15 @@ export default class BudgetForm extends React.Component {
             onChange={this.onDescriptionChange}
            />
           <input
+            className="text-input"
             type="text"
-            placehoder='Budgeted Amount'
+            placeholder='Budgeted Amount'
             value={this.state.amount}
             onChange={this.onAmountChange}
            />
+           <div>
+                <button className='button'>{this.props.budget ? 'Save Changes' : 'Save Budget'}</button>
+            </div>
         </form>
       </div>
     )

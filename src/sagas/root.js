@@ -4,6 +4,7 @@ import { watchAddExpenseSaga,
         watchRemoveExpenseSaga, 
         watchEditExpenseSaga, } from './expenses';
 import { watchStartLoginSaga, watchStartLogoutSaga } from './auth';
+import { watchAddBudgetSaga } from './budgets';
 
 export function* rootSaga() {
     yield all([
@@ -12,6 +13,7 @@ export function* rootSaga() {
       watchRemoveExpenseSaga(),
       watchEditExpenseSaga(),
       watchStartLoginSaga(),
-      watchStartLogoutSaga()
+      watchStartLogoutSaga(),
+      watchAddBudgetSaga()
     ]);
 };

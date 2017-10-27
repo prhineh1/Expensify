@@ -2,6 +2,7 @@ import React from 'react';
 import {Router, Route, Switch, Link, NavLink} from 'react-router-dom';
 import createHistory from 'history/createBrowserHistory';
 import AddExpensePage from '../components/AddExpensePage';
+import AddBudgetPage from '../components/AddBudgetPage';
 import EditExpensePage from '../components/EditExpensePage';
 import ExpenseDashboardPage from '../components/ExpenseDashboardPage';
 import LoginPage  from '../components/LoginPage';
@@ -17,6 +18,7 @@ const AppRouter = () => (
             <Switch>
                 <PublicRoute path='/' component={LoginPage} exact={true} />
                 <PrivateRoute path='/dashboard' component={ExpenseDashboardPage} />
+                <PrivateRoute path='/create/budget' component={AddBudgetPage} exact={true} />
                 <PrivateRoute path='/create' component={AddExpensePage} />
                 <PrivateRoute path='/edit/:id' component={EditExpensePage} />
                 <Route component={NotFoundPage} />

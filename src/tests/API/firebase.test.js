@@ -1,16 +1,18 @@
 import * as firebase from 'firebase';
 import * as Api from '../../firebase/firebase';
-import expenses from '../fixtures/expenses'
+import expenses from '../fixtures/expenses';
+import budget from '../fixtures/budgets';
 
 let uid;
 
 beforeAll((done) => {
     uid = 'abc123';
-    const expensesData= {};
+    const expensesData = {};
     expenses.forEach(({ id, description, note, amount, createdAt }) => {
         expensesData[id] = { description, note, amount, createdAt };
     });
     firebase.database().ref(`users/${uid}/expenses`).set(expensesData).then(() => done());
+    firebase.database().ref(`users/${uid}/budgets`).set(budget).then(() => done());
 });
 
 test('should add an expense to firebase', (done) => {
@@ -18,6 +20,15 @@ test('should add an expense to firebase', (done) => {
       return firebase.database().ref(`users/${uid}/expenses/${ref.key}`).once('value');   
     }).then((snapshot) => {
         expect(snapshot.val()).toEqual(expenses[1]); 
+        done();  
+    });  
+});
+
+test('should add a budget to firebase', (done) => {
+    Api.createBudget(budget, uid).then((ref) => {
+      return firebase.database().ref(`users/${uid}/budgets/${ref.key}`).once('value');   
+    }).then((snapshot) => {
+        expect(snapshot.val()).toEqual(budget); 
         done();  
     });  
 });
