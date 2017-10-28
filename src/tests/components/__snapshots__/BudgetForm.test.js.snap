@@ -17,7 +17,7 @@ exports[`should render BudgetForm 1`] = `
     <input
       className="text-input"
       onChange={[Function]}
-      placehoder="Budgeted Amount"
+      placeholder="Budgeted Amount"
       type="text"
       value=""
     />
@@ -49,7 +49,7 @@ exports[`should render BudgetForm with a budget 1`] = `
     <input
       className="text-input"
       onChange={[Function]}
-      placehoder="Budgeted Amount"
+      placeholder="Budgeted Amount"
       type="text"
       value="200"
     />
@@ -86,7 +86,7 @@ exports[`should render error for invalid form submission 1`] = `
     <input
       className="text-input"
       onChange={[Function]}
-      placehoder="Budgeted Amount"
+      placeholder="Budgeted Amount"
       type="text"
       value=""
     />

@@ -13,6 +13,11 @@ exports[`should render AddBudgetPage 1`] = `
       >
         Add Budget
       </h1>
+      <p
+        className="page-header__subtitle"
+      >
+        Note: Budgeted expenses are tracked by month.
+      </p>
     </div>
   </div>
   <div

@@ -31,6 +31,20 @@ export const get = (uid) => {
     });
 };
 
+export const getBudgets = uid => {
+  return database.ref(`users/${uid}/budgets`).once('value')
+  .then(snapshot => {
+    const budgets = [];
+    snapshot.forEach(childSnap => {
+      budgets.push({
+        id: childSnap.key,
+        ...childSnap.val()
+      });
+    });
+    return budgets;
+  });
+}
+
 export const remove = (id, uid) => database.ref(`users/${uid}/expenses/${id}`).remove();
 
 export const edit = (updates, id, uid) => database.ref(`users/${uid}/expenses/${id}`).update({ ...updates })

@@ -8,6 +8,7 @@ export default class ExpenseForm extends React.Component {
             note: this.props.expense ? this.props.expense.note : '',
             amount: this.props.expense ? (this.props.expense.amount / 100).toString() : '',
             createdAt: this.props.expense ? moment(this.props.expense.createdAt) : moment(),
+            budgetId: this.props.expense ? this.props.expense.budgetId : '',
             calendarFocused: false,
             error: ''
         };
@@ -21,7 +22,7 @@ export default class ExpenseForm extends React.Component {
     };
     onAmountChange = (e) => {
         const amount = e.target.value;
-    if(!amount || amount.match(/^((([1-9])\d*)|0)(\.\d{0,2})?$/)) {
+        if(!amount || amount.match(/^((([1-9])\d*)|0)(\.\d{0,2})?$/)) {
             this.setState(() => ({ amount }));
         }
     };
@@ -32,6 +33,10 @@ export default class ExpenseForm extends React.Component {
     };
     onFocusChange = ({ focused }) => {
         this.setState(() => ({ calendarFocused: focused}))
+    };
+    onBudgetChange = e => {
+        const budgetId = e.target.value;
+        this.setState(() => ({ budgetId }));
     };
     onSubmit = (e) => {
         e.preventDefault();
@@ -44,7 +49,8 @@ export default class ExpenseForm extends React.Component {
                 description: this.state.description,
                 amount: parseFloat(this.state.amount, 10) * 100,
                 createdAt: this.state.createdAt.valueOf(),
-                note: this.state.note
+                note: this.state.note,
+                budgetId: this.state.budgetId
             });
         }
     }
@@ -60,31 +66,43 @@ export default class ExpenseForm extends React.Component {
                     value={this.state.description}
                     onChange={this.onDescriptionChange}
                     />
-                    <input 
+                <input 
                     className='text-input'
                     type='text'
                     placeholder="Amount"
                     value={this.state.amount}
                     onChange={this.onAmountChange}
-                    />
-                    <SingleDatePicker
+                />
+                <label className='label' htmlFor='budgetSelect'>Select Budget Category Below: </label>
+                <select
+                    id="budgetSelect"
+                    className='select'
+                    value={this.state.budgetId}
+                    onChange={this.onBudgetChange}
+                >
+                    <option value=''>None</option>
+                    {this.props.budgets.map(budget => (
+                        <option key={budget.id} value={budget.id}>{budget.description}</option>
+                    ))}
+                </select>
+                <SingleDatePicker
                     date={this.state.createdAt}
                     onDateChange={this.onDateChange}
                     focused={this.state.calendarFocused}
                     onFocusChange={this.onFocusChange}
                     numberOfMonths={1}
                     isOutsideRange={() => false}
-                    />
-                    <textarea
+                />
+                <textarea
                     className='text-area'
                     placeholder='Add a note for your expense (optional).'
                     value={this.state.note}
                     onChange={this.onNoteChange}
-                    >                         
-                    </textarea>
-                    <div>
-                        <button className='button'>{this.props.expense ? 'Save Changes' : 'Save Expense'}</button>
-                    </div>
+                >                         
+                </textarea>
+                <div>
+                    <button className='button'>{this.props.expense ? 'Save Changes' : 'Save Expense'}</button>
+                </div>
             </form>
         );
     }

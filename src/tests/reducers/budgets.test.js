@@ -14,3 +14,11 @@ test('should add a budget', () => {
   };
   expect(reducer([], action)).toEqual([budgets]);
 });
+
+test('should set up state with budgets', () => {
+  const action = {
+    type: 'SET_BUDGETS_COMPLETE',
+    budgets: [budgets, budgets]
+  };
+  expect(reducer([], action)).toEqual([budgets, budgets])
+})

@@ -55,6 +55,16 @@
     font-size: $font-size-small;
 }
 
+.list-item__budget {
+    margin: 0;
+    word-break: break-all;
+    
+    @media (min-width: $desktop-breakpoint) {
+        margin: 0 4.2rem 0 0;
+    }
+
+}
+
 .list-item__data {
     margin: $s-size 0 0 0;
 

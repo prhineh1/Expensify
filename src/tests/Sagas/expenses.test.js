@@ -2,6 +2,7 @@ import { addExpenseAsync, setExpensesAsync, removeExpenseAsync, editExpenseAsync
 import { addExpense, removeExpense, editExpense, setExpenses } from '../../actions/expenses';
 import { call, put } from 'redux-saga/effects';
 import expenses from '../fixtures/expenses';
+import budget from '../fixtures/budgets'
 import * as Api from '../../firebase/firebase';
 
 const uid ='abc123';
@@ -37,6 +38,17 @@ describe('testing setExpensesAsync', () => {
         expect(response).toEqual(put({
             type: 'SET_EXPENSES_COMPLETE',
             expenses
+        }));
+    });
+    test('should return value from third iterator', () => {
+        const response = iterator.next().value;
+        expect(response).toEqual(call(Api.getBudgets, uid));
+    });
+    test('should return value from fourth iterator', () => {
+        const response = iterator.next([budget, budget]).value;
+        expect(response).toEqual(put({
+            type: 'SET_BUDGETS_COMPLETE',
+            budgets: [budget, budget]
         }));
     });
     test('Saga should be done', () => {

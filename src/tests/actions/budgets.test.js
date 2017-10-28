@@ -17,3 +17,19 @@ test('should correctly set addBudgetComplete action object', () => {
     budget: budgets,
   });
 });
+
+test('should correctly set setBudgets action object', () => {
+  const action = actions.setBudgets('abc123');
+  expect(action).toEqual({
+    type: 'SET_BUDGETS',
+    uid: 'abc123'
+  });
+});
+
+test('should correctly set setBudgetsComplete action object', () => {
+  const action = actions.setBudgetsComplete(budgets);
+  expect(action).toEqual({
+    type: 'SET_BUDGETS_COMPLETE',
+    budgets
+  });
+});

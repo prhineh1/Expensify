@@ -26,5 +26,7 @@ export default (expenses, {text, sortBy, startDate, endDate, pagination, expense
         partitionedExpenses = partition(pagination, pagination, [], partitionedExpenses);        
     }
 
+    //first return value is a jagged array with all the expenses
+    //second return value is the current array that will be displayed
     return [partitionedExpenses, partitionedExpenses[expensesPartitionIndex]];
 };

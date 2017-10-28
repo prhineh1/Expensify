@@ -14,6 +14,7 @@ export class AddBudgetPage extends React.Component {
           <div className='page-header'>
               <div className='content-container'>
                   <h1 className='page-header__title'>Add Budget</h1>
+                  <p className='page-header__subtitle'>Note: Budgeted expenses are tracked by month.</p>
               </div>
           </div>
           <div className='content-container'>

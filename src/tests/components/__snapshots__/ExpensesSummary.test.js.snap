@@ -29,6 +29,13 @@ exports[`should render ExpensesSummary with an expense 1`] = `
       >
         Add Expense
       </Link>
+      <Link
+        className="button"
+        replace={false}
+        to="/create/budget"
+      >
+        Add Budget
+      </Link>
     </div>
   </div>
 </div>
@@ -62,6 +69,13 @@ exports[`should render ExpensesSummary with multiple expenses 1`] = `
         to="/create"
       >
         Add Expense
+      </Link>
+      <Link
+        className="button"
+        replace={false}
+        to="/create/budget"
+      >
+        Add Budget
       </Link>
     </div>
   </div>

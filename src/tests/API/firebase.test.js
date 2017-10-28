@@ -40,6 +40,13 @@ test('should fetch expenses from firebase', (done) => {
     });
 });
 
+test('should fetch budgets from firebase', (done) => {
+    Api.getBudgets(uid).then((budgets) => {
+        expect(budgets).toEqual(expect.any(Array));
+        done();
+    });
+});
+
 test('should delete an expense from firebase', (done) => {
     Api.remove('1', uid).then(() => {
         return firebase.database().ref(`users/${uid}/expenses/1`).once('value')

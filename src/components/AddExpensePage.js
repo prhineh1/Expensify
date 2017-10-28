@@ -19,6 +19,7 @@ export class AddExpensePage extends React.Component {
             <div className='content-container'>
                 <ExpenseForm
                 onSubmit={this.onSubmit}
+                budgets={this.props.budgets}
                 />
              </div>
         </div>
@@ -26,7 +27,10 @@ export class AddExpensePage extends React.Component {
     }
 }
 
-const mapStateToProps = (state) => ({ uid: state.auth.uid });
+const mapStateToProps = (state) => ({ 
+    uid: state.auth.uid,
+    budgets: state.budgets
+});
 
 const mapDispatchToProps = (dispatch) => ({
     addExpense: (expense, uid) => dispatch(addExpense(expense, uid))

@@ -9,6 +9,7 @@ export const ExpenseList = (props) => (
         <div className='list-header'>
             <div className='show-for-mobile'>Expenses</div>
             <div className='show-for-desktop'>Expense</div>
+            <div className='show-for-desktop'>Budget</div>
             <div className='show-for-desktop'>Amount</div>
         </div>
         <div className='list-body'>
@@ -19,7 +20,7 @@ export const ExpenseList = (props) => (
                     </div>
                 ) : (
                     props.expenses.map((expense, index) => 
-                    <ExpenseListItem key={expense.id} {...expense} />
+                    <ExpenseListItem key={expense.id} expense={expense} budgets={props.budgets} />
                     )
                 )
             }
@@ -49,7 +50,8 @@ const mapStateToProps = (state) => {
         expenses: selectedExpenses,
         partitions: partitionedExpenses,
         next: state.filters.expensesPartitionIndex + 1,
-        prev: state.filters.expensesPartitionIndex - 1
+        prev: state.filters.expensesPartitionIndex - 1,
+        budgets: state.budgets
     };
 };
 

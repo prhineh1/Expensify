@@ -18,6 +18,11 @@ exports[`should render ExpenseListItem with an expense 1`] = `
       December 27th, 1969
     </span>
   </div>
+  <h4
+    className="list-item__budget"
+  >
+    utilities
+  </h4>
   <h3
     className="list-item__data"
   >

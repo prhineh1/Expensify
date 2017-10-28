@@ -28,7 +28,9 @@ export class EditExpensePage extends React.Component {
             <div className='content-container'>
                 <ExpenseForm
                     expense={this.props.expense}
-                    onSubmit={this.onSubmit} />
+                    onSubmit={this.onSubmit}
+                    budgets={this.props.budgets} 
+                />
                 <button className='button button--secondary' onClick={this.toggleModal} >
                         Remove Expense
                 </button>
@@ -44,7 +46,8 @@ export class EditExpensePage extends React.Component {
 
 const mapStateToProps = (state, props) => ({
     expense: state.expenses.find((expense) => expense.id === props.match.params.id),
-    uid: state.auth.uid
+    uid: state.auth.uid,
+    budgets: state.budgets
 });
 
 const mapDispatchToProps = (dispatch, props) => ({

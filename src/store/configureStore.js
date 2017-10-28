@@ -5,6 +5,7 @@ import createSagaMiddleware from 'redux-saga';
 import expensesReducer from '../reducers/expenses';
 import filterReducer from '../reducers/filters';
 import authReducer from '../reducers/auth';
+import budgetsReducer from '../reducers/budgets';
 import { rootSaga } from '../sagas/root';
 
 export default () => {
@@ -15,7 +16,8 @@ export default () => {
             combineReducers({
                 expenses: expensesReducer,
                 filters: filterReducer,
-                auth: authReducer
+                auth: authReducer,
+                budgets: budgetsReducer
             }),
             composeEnhancers(applyMiddleware(sagaMiddleware))
         ),

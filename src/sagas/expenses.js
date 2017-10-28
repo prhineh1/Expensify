@@ -37,11 +37,16 @@ export function* addExpenseAsync({ expense, uid }) {
 
 export function* setExpensesAsync(uid) {
     try {
-        const expenses = yield call(Api.get, uid);  
+        const expenses = yield call(Api.get, uid);
         yield put({
             type: 'SET_EXPENSES_COMPLETE',
             expenses
-        });      
+        });
+        const budgets = yield call(Api.getBudgets, uid);  
+        yield put({
+            type: 'SET_BUDGETS_COMPLETE',
+            budgets
+        });
     }
     catch(error) {
         return;
