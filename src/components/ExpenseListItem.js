@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import numeral from 'numeral';
 import moment from 'moment';
@@ -12,7 +11,8 @@ export const ExpenseListItem = (props) => (
         </div>
         <h4 className='list-item__budget'>{
             props.expense.budgetId ? 
-            (props.budgets.find(budget => budget.id === props.expense.budgetId).description) : ('none') 
+            <span>{(props.budgets.find(budget => budget.id === props.expense.budgetId).description)}</span> : 
+            <span>none</span> 
             }</h4>
         <h3 className='list-item__data'>
             {numeral(props.expense.amount / 100).format('$0,0.00')}

@@ -1,0 +1,93 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render BudgetListItem with an expense 1`] = `
+<Link
+  className="list-item"
+  replace={false}
+  to="/edit/budgeta;sdlfj2089"
+>
+  <div>
+    <h3
+      className="list-item__title"
+    >
+      utilities
+    </h3>
+  </div>
+  <h4
+    className="list-item__budget"
+  >
+    <span
+      className="list-item__budget__mobile"
+    >
+      Expenses: 
+      $100.95
+    </span>
+    <span
+      className="list-item__budget__desktop"
+    >
+      $100.95
+    </span>
+  </h4>
+  <h3
+    className="list-item__data"
+  >
+    <span
+      className="list-item__data__mobile"
+    >
+      Budget: 
+      $200.00
+    </span>
+    <span
+      className="list-item__data__desktop"
+    >
+      $200.00
+    </span>
+  </h3>
+</Link>
+`;
+
+exports[`should render BudgetListItem without an expense 1`] = `
+<Link
+  className="list-item"
+  replace={false}
+  to="/edit/budgeta;sdlfj2089"
+>
+  <div>
+    <h3
+      className="list-item__title"
+    >
+      utilities
+    </h3>
+  </div>
+  <h4
+    className="list-item__budget"
+  >
+    <span
+      className="list-item__budget__mobile"
+    >
+      Expenses: 
+      $0.00
+    </span>
+    <span
+      className="list-item__budget__desktop"
+    >
+      $0.00
+    </span>
+  </h4>
+  <h3
+    className="list-item__data"
+  >
+    <span
+      className="list-item__data__mobile"
+    >
+      Budget: 
+      $200.00
+    </span>
+    <span
+      className="list-item__data__desktop"
+    >
+      $200.00
+    </span>
+  </h3>
+</Link>
+`;

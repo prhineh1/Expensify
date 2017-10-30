@@ -38,7 +38,7 @@ firebase.auth().onAuthStateChanged((user) => {
         store.runSaga(setExpensesAsync, user.uid).done.then(() => {
             renderApp();
             if (history.location.pathname === '/') {
-                history.push('/dashboard');
+                history.push('/dashboard/expenses');
             }
         });
     } else {

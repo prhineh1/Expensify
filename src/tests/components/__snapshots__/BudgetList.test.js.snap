@@ -1,0 +1,106 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render BudgetList with budgets 1`] = `
+<div
+  className="content-container"
+>
+  <div
+    className="list-header"
+  >
+    <div
+      className="show-for-mobile"
+    >
+      Budgets
+    </div>
+    <div
+      className="show-for-desktop"
+    >
+      Description
+    </div>
+    <div
+      className="show-for-desktop"
+    >
+      Expenses Total
+    </div>
+    <div
+      className="show-for-desktop"
+    >
+      Budgeted Amount
+    </div>
+  </div>
+  <div
+    className="list-body"
+  >
+    <BudgetListItem
+      budget={
+        Object {
+          "amount": 20000,
+          "description": "utilities",
+          "id": "a;sdlfj2089",
+        }
+      }
+      expenses={
+        Array [
+          Object {
+            "amount": 10095,
+            "budgetId": "a;sdlfj2089",
+            "createdAt": -345600000,
+            "description": "Rent",
+            "id": "2",
+            "note": "",
+          },
+        ]
+      }
+      key="a;sdlfj2089"
+    />
+  </div>
+  <div
+    className="list-nav"
+  />
+</div>
+`;
+
+exports[`should render BudgetList without budgets 1`] = `
+<div
+  className="content-container"
+>
+  <div
+    className="list-header"
+  >
+    <div
+      className="show-for-mobile"
+    >
+      Budgets
+    </div>
+    <div
+      className="show-for-desktop"
+    >
+      Description
+    </div>
+    <div
+      className="show-for-desktop"
+    >
+      Expenses Total
+    </div>
+    <div
+      className="show-for-desktop"
+    >
+      Budgeted Amount
+    </div>
+  </div>
+  <div
+    className="list-body"
+  >
+    <div
+      className="list-item list-item--message"
+    >
+      <span>
+        No budgets
+      </span>
+    </div>
+  </div>
+  <div
+    className="list-nav"
+  />
+</div>
+`;

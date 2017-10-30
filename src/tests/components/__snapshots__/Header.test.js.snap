@@ -13,7 +13,7 @@ exports[`should render Header correctly 1`] = `
       <Link
         className="header__title"
         replace={false}
-        to="/dashboard"
+        to="/dashboard/expenses"
       >
         <h1>
           Expensify

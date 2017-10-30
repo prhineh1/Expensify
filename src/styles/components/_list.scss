@@ -24,15 +24,60 @@
     padding: $s-size;
     text-decoration: none;
     transition: background .3s ease;
+
     &:hover {
         background: $off-white;
     }
+
+    div {
+        width: 250px;
+    }
+
     @media (min-width: $desktop-breakpoint) {
         align-items: center;
         flex-direction: row;
         justify-content: space-between;
         padding: $m-size;
     }
+
+}
+
+.list-item--over {
+    -webkit-animation: color-change 2s infinite;
+    -moz-animation: color-change 2s infinite;
+    -o-animation: color-change 2s infinite;
+    -ms-animation: color-change 2s infinite;
+    animation: color-change 2s infinite;
+}
+
+@-webkit-keyframes color-change {
+    0% { background-color: initial; }
+    50% { background-color: #c67795; }
+    100% { background-color: initial; }
+}
+@-moz-keyframes color-change {
+    0% { background-color: initial; }
+    50% { background-color: #c67795; }
+    100% { background-color: initial; }
+}
+@-ms-keyframes color-change {
+    0% { background-color: initial; }
+    50% { background-color: #c67795; }
+    100% { background-color: initial; }
+}
+@-o-keyframes color-change {
+    0% { background-color: initial; }
+    50% { background-color: #c67795; }
+    100% { background-color: initial; }
+}
+@keyframes color-change {
+    0% { background-color: initial; }
+    50% { background-color: #c67795; }
+    100% { background-color: initial; }
+}
+
+.list-item--over {
+    background-color: #c67795;
 }
 
 .list-item--message {
@@ -60,9 +105,28 @@
     word-break: break-all;
     
     @media (min-width: $desktop-breakpoint) {
-        margin: 0 4.2rem 0 0;
+        display: flex;
+        justify-content: flex-start;
+        width: 230px;
     }
 
+}
+
+.list-item__budget__mobile {
+    font-weight: 400;
+
+    @media (min-width: $desktop-breakpoint) {
+        display: none;
+    }
+
+}
+
+.list-item__budget__desktop {
+
+    @media (max-width: $desktop-breakpoint - 0.1rem) {
+        display: none;
+    }
+    
 }
 
 .list-item__data {
@@ -72,6 +136,24 @@
         margin: 0;
         padding-left: $s-size
     }
+
+}
+
+.list-item__data__mobile {
+    font-weight: 500;
+
+    @media (min-width: $desktop-breakpoint) {
+        display: none;        
+    }
+
+}
+
+.list-item__data__desktop {
+
+    @media (max-width: $desktop-breakpoint - 0.1rem) {
+        display: none;
+    }
+
 }
 
 .list-nav {

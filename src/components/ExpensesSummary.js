@@ -14,8 +14,8 @@ export const ExpensesSummary = (props) => (
                 <h1 className='page-header__title'>Viewing <span>{props.expenseCount}</span> expenses totalling <span>{numeral(props.expensesTotal / 100).format('$0,0.00')}</span></h1>
             )}
             <div className='page-header__actions'>
-                <Link className='button' to='/create'>Add Expense</Link>
-                <Link className='button' to='/create/budget'>Add Budget</Link>
+                <Link className='button' to='/create/expense'>Add Expense</Link>
+                <Link className='button' to='/dashboard/budgets'>View Budgets</Link>
             </div>
         </div>
     </div>

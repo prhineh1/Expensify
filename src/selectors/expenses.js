@@ -18,15 +18,19 @@ export default (expenses, {text, sortBy, startDate, endDate, pagination, expense
             return b.amount - a.amount;
         }
     });
-    
+
+    //parition(n, [step], [pad], coll)
     if (partitionedExpenses.length % pagination === 0 && partitionedExpenses.length > 0) {
         partitionedExpenses = partition(pagination, pagination, partitionedExpenses);
     }
+    //when the pagination isn't a factor of partionedExpenses, add an empty array as
+    //padding to ensure the remaining elements are correctly partitioned
+    //if partiionedExpenses is empty, the padding ensures we get a jagged array
     else {
         partitionedExpenses = partition(pagination, pagination, [], partitionedExpenses);        
     }
 
-    //first return value is a jagged array with all the expenses
-    //second return value is the current array that will be displayed
+    //first return value is a jagged array with all the expenses partitioned according to 'pagination'
+    //second return value is the partion that will be displayed in ExpenseList.js
     return [partitionedExpenses, partitionedExpenses[expensesPartitionIndex]];
 };

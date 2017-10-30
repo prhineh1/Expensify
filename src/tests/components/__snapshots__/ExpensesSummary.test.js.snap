@@ -25,16 +25,16 @@ exports[`should render ExpensesSummary with an expense 1`] = `
       <Link
         className="button"
         replace={false}
-        to="/create"
+        to="/create/expense"
       >
         Add Expense
       </Link>
       <Link
         className="button"
         replace={false}
-        to="/create/budget"
+        to="/dashboard/budgets"
       >
-        Add Budget
+        View Budgets
       </Link>
     </div>
   </div>
@@ -66,16 +66,16 @@ exports[`should render ExpensesSummary with multiple expenses 1`] = `
       <Link
         className="button"
         replace={false}
-        to="/create"
+        to="/create/expense"
       >
         Add Expense
       </Link>
       <Link
         className="button"
         replace={false}
-        to="/create/budget"
+        to="/dashboard/budgets"
       >
-        Add Budget
+        View Budgets
       </Link>
     </div>
   </div>

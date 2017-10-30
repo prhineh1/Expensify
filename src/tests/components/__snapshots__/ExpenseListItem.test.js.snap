@@ -21,7 +21,9 @@ exports[`should render ExpenseListItem with an expense 1`] = `
   <h4
     className="list-item__budget"
   >
-    utilities
+    <span>
+      utilities
+    </span>
   </h4>
   <h3
     className="list-item__data"
