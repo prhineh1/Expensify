@@ -4,7 +4,7 @@ exports[`should render BudgetListItem with an expense 1`] = `
 <Link
   className="list-item"
   replace={false}
-  to="/edit/budgeta;sdlfj2089"
+  to="/edit/budget/a;sdlfj2089"
 >
   <div>
     <h3
@@ -50,7 +50,7 @@ exports[`should render BudgetListItem without an expense 1`] = `
 <Link
   className="list-item"
   replace={false}
-  to="/edit/budgeta;sdlfj2089"
+  to="/edit/budget/a;sdlfj2089"
 >
   <div>
     <h3

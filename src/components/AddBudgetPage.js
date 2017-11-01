@@ -6,7 +6,7 @@ import { addBudget } from '../actions/budgets';
 export class AddBudgetPage extends React.Component {
   onSubmit = (Budget) => {
     this.props.addBudget(Budget, this.props.uid);
-    this.props.history.push('/');
+    this.props.history.push('/dashboard/budgets');
   }
   render() {
     return (

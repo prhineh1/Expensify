@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { editExpense, removeExpense } from '../actions/expenses'
 import ExpenseForm from './ExpenseForm';
-import RemoveExpenseModal from './RemoveExpenseModal';
+import RemoveButtonModal from './RemoveButtonModal';
 
 export class EditExpensePage extends React.Component {
     state = {
@@ -31,11 +31,11 @@ export class EditExpensePage extends React.Component {
                     onSubmit={this.onSubmit}
                     budgets={this.props.budgets} 
                 />
-                <button className='button button--secondary' onClick={this.toggleModal} >
+                <button className='button button--secondary button--nav' onClick={this.toggleModal} >
                         Remove Expense
                 </button>
             </div>
-            <RemoveExpenseModal 
+            <RemoveButtonModal 
                 toggleModal={this.toggleModal} 
                 removeExpense={this.removeExpense}
                 isOpen={this.state.isOpen} />

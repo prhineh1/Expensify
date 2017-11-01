@@ -18,6 +18,6 @@ test('should render AddBudgetPage', () => {
 
 test('should handle addBudget', () => {
   wrapper.find('BudgetForm').prop('onSubmit')(budget);
-  expect(history.push).toHaveBeenLastCalledWith('/');
+  expect(history.push).toHaveBeenLastCalledWith('/dashboard/budgets');
   expect(addBudget).toHaveBeenLastCalledWith(budget, uid);
 });

@@ -3,11 +3,14 @@ import * as Api from '../../firebase/firebase';
 import expenses from '../fixtures/expenses';
 import budget from '../fixtures/budgets';
 
-let uid;
+let uid, budgetArray
 
-beforeAll((done) => {
-    uid = 'abc123';
+beforeEach((done) => {
+     budgetArray = [budget];
+     uid = 'abc123';
     const expensesData = {};
+    const budgetsData = {};
+    budgetArray.forEach(budget => budgetsData[budget.id] = { description: budget.description, amount: budget.amount })
     expenses.forEach(({ id, description, note, amount, createdAt }) => {
         expensesData[id] = { description, note, amount, createdAt };
     });
@@ -48,8 +51,17 @@ test('should fetch budgets from firebase', (done) => {
 });
 
 test('should delete an expense from firebase', (done) => {
-    Api.remove('1', uid).then(() => {
-        return firebase.database().ref(`users/${uid}/expenses/1`).once('value')
+    Api.remove('a;sdlfj2089', uid).then(() => {
+        return firebase.database().ref(`users/${uid}/budgets/1`).once('value')
+    }).then((snapshot) => {
+        expect(snapshot.val()).toBeFalsy();
+        done();
+    });
+});
+
+test('should delete a budget from firebase', (done) => {
+    Api.removeBudget('1', uid).then(() => {
+        return firebase.database().ref(`users/${uid}/budgets/1`).once('value')
     }).then((snapshot) => {
         expect(snapshot.val()).toBeFalsy();
         done();
@@ -64,6 +76,18 @@ test('should edit an expense in firebase', (done) => {
         return firebase.database().ref(`users/${uid}/expenses/2/note`).once('value')
     }).then((snapshot) => {
         expect(snapshot.val()).toBe(updates.note);
+        done();
+    });
+});
+
+test('should edit a budget in firebase', (done) => {
+    const updates = {
+        description: 'This has been updated',
+    };
+    Api.editBudget(updates, 'a;sdlfj2089', uid).then(() => {
+        return firebase.database().ref(`users/${uid}/budgets/a;sdlfj2089/description`).once('value')
+    }).then((snapshot) => {
+        expect(snapshot.val()).toBe(updates.description);
         done();
     });
 });

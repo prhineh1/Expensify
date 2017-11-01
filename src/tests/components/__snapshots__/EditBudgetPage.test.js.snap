@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`should render EditExpensePage 1`] = `
+exports[`should render editBudgetPage 1`] = `
 <div>
   <div
     className="page-header"
@@ -11,22 +11,19 @@ exports[`should render EditExpensePage 1`] = `
       <h1
         className="page-header__title"
       >
-        Edit Expense
+        Edit Budget
       </h1>
     </div>
   </div>
   <div
     className="content-container"
   >
-    <ExpenseForm
-      expense={
+    <BudgetForm
+      budget={
         Object {
-          "amount": 10095,
-          "budgetId": "a;sdlfj2089",
-          "createdAt": -345600000,
-          "description": "Rent",
-          "id": "2",
-          "note": "",
+          "amount": 20000,
+          "description": "utilities",
+          "id": "a;sdlfj2089",
         }
       }
       onSubmit={[Function]}
@@ -35,12 +32,12 @@ exports[`should render EditExpensePage 1`] = `
       className="button button--secondary button--nav"
       onClick={[Function]}
     >
-      Remove Expense
+      Remove Budget
     </button>
   </div>
   <RemoveButtonModal
     isOpen={false}
-    removeExpense={[Function]}
+    removeBudget={[Function]}
     toggleModal={[Function]}
   />
 </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import RemoveExpenseModal from '../../components/RemoveExpenseModal';
+import RemoveButtonModal from '../../components/RemoveButtonModal';
 
 let isOpen, removeExpense, toggleModal, wrapper;
 
@@ -8,18 +8,18 @@ beforeEach(() => {
     isOpen = true;
     removeExpense = jest.fn();
     toggleModal = jest.fn()
-    wrapper = shallow(<RemoveExpenseModal
+    wrapper = shallow(<RemoveButtonModal
         isOpen={isOpen}
         removeExpense={removeExpense}
         toggleModal={toggleModal}
      />);
 });
 
-test('should render RemoveExpensemodal', () => {
+test('should render RemoveButtonModal', () => {
     expect(wrapper).toMatchSnapshot();
 });
 
-test('should handle removeExpense', () => {
+test('should handle RemoveButtonModal', () => {
     wrapper.find('button').at(0).simulate('click');
     expect(removeExpense).toHaveBeenCalled();
 });

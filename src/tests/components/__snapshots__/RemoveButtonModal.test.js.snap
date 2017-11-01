@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`should render RemoveExpensemodal 1`] = `
+exports[`should render RemoveButtonModal 1`] = `
 <Modal
   ariaHideApp={true}
   bodyOpenClassName="ReactModal__Body--open"
@@ -17,7 +17,7 @@ exports[`should render RemoveExpensemodal 1`] = `
   <h3
     className="modal__title"
   >
-    Are you sure you want to remove this expense?
+    Are you sure you want to remove this item?
   </h3>
   <div
     className="modal__body"

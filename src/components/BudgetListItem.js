@@ -7,7 +7,7 @@ const BudgetListItem = (props) => {
     const expensesTotal = props.expenses.reduce((sum, { amount }) => sum + amount, 0);
     const listItemClass = expensesTotal > props.budget.amount ? 'list-item list-item--over' : 'list-item';
     return ( 
-        <Link className={listItemClass} to={'/edit/budget'+ props.budget.id}>
+        <Link className={listItemClass} to={'/edit/budget/'+ props.budget.id}>
             <div>
                 <h3 className='list-item__title'>{props.budget.description}</h3>
             </div>

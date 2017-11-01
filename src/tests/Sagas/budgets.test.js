@@ -25,3 +25,44 @@ describe('testing addBudgetAsync saga', () => {
     expect(response).toEqual({done: true, value: undefined});
   });
 });
+
+describe('testing editBudgetAsync saga', () => {
+  const sagaBudget = Actions.editBudget('29', { description: 'changed' },uid);
+  const iterator = Sagas.editBudgetAsync(sagaBudget);
+  test('should return first value of iterator', () => {
+    const response = iterator.next().value;
+    expect(response).toEqual(call(Api.editBudget, { description: 'changed' }, '29', uid));
+  });
+  test('should return second value of iterator', () => {
+    const response = iterator.next().value;
+    expect(response).toEqual(put({
+      type: 'EDIT_BUDGET_COMPLETE',
+      id: '29',
+      changes: { description: 'changed' }
+    }));
+  });
+  test('Saga should be done', () => {
+    const response = iterator.next();
+    expect(response).toEqual({done: true, value: undefined});
+  });
+});
+
+describe('testing removeBudgetAsync saga', () => {
+  const sagaBudget = Actions.removeBudget('29',uid);
+  const iterator = Sagas.removeBudgetAsync(sagaBudget);
+  test('should return first value of iterator', () => {
+    const response = iterator.next().value;
+    expect(response).toEqual(call(Api.removeBudget, '29', uid));
+  });
+  test('should return second value of iterator', () => {
+    const response = iterator.next().value;
+    expect(response).toEqual(put({
+      type: 'REMOVE_BUDGET_COMPLETE',
+      id: '29'
+    }));
+  });
+  test('Saga should be done', () => {
+    const response = iterator.next();
+    expect(response).toEqual({done: true, value: undefined});
+  });
+});
