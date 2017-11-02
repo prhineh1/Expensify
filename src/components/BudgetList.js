@@ -32,7 +32,7 @@ export class BudgetList extends React.Component {
                                 budget={budget} 
                                 expenses={
                                     this.props.expenses.filter(expense => expense.budgetId === budget.id && 
-                                    moment(expense.createdAt).isBetween(moment().startOf('month'), moment().endOf('month'), 'day'))
+                                    moment(expense.createdAt).isBetween(moment().startOf('month'), moment().endOf('month')))
                                 } 
                             />
                             )
